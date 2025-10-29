@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/markdown-to-pdf-converter/static/css/main.1e8a6eae.css",
-    "main.js": "/markdown-to-pdf-converter/static/js/main.2359e159.js",
+    "main.css": "/markdown-to-pdf-converter/static/css/main.fbc0aaab.css",
+    "main.js": "/markdown-to-pdf-converter/static/js/main.fe04c557.js",
     "static/js/213.2ffdd1ef.chunk.js": "/markdown-to-pdf-converter/static/js/213.2ffdd1ef.chunk.js",
     "static/js/455.f0657be4.chunk.js": "/markdown-to-pdf-converter/static/js/455.f0657be4.chunk.js",
     "index.html": "/markdown-to-pdf-converter/index.html",
-    "main.1e8a6eae.css.map": "/markdown-to-pdf-converter/static/css/main.1e8a6eae.css.map",
-    "main.2359e159.js.map": "/markdown-to-pdf-converter/static/js/main.2359e159.js.map",
+    "main.fbc0aaab.css.map": "/markdown-to-pdf-converter/static/css/main.fbc0aaab.css.map",
+    "main.fe04c557.js.map": "/markdown-to-pdf-converter/static/js/main.fe04c557.js.map",
     "213.2ffdd1ef.chunk.js.map": "/markdown-to-pdf-converter/static/js/213.2ffdd1ef.chunk.js.map",
     "455.f0657be4.chunk.js.map": "/markdown-to-pdf-converter/static/js/455.f0657be4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e8a6eae.css",
-    "static/js/main.2359e159.js"
+    "static/css/main.fbc0aaab.css",
+    "static/js/main.fe04c557.js"
   ]
 }
