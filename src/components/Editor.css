@@ -16,6 +16,16 @@
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.editor-header::after {
+  content: '↕️ Scroll synced';
+  position: absolute;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
 }
 
 .section-icon {
@@ -179,6 +189,11 @@
   border-radius: 4px;
 }
 
+/* Instant scrolling for better synchronization */
+.wysiwyg-editor-wrapper .w-md-editor-text {
+  scroll-behavior: auto;
+}
+
 /* Light mode explicit colors - FORCE DARK TEXT */
 .wysiwyg-editor-wrapper .w-md-editor,
 .wysiwyg-editor-wrapper .w-md-editor-text-input,
@@ -261,6 +276,12 @@
 @media (max-width: 1024px) {
   .editor-container {
     height: 400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .editor-header::after {
+    display: none;
   }
 }
 

@@ -24,6 +24,8 @@ function App() {
   });
   
   const previewRef = useRef(null);
+  const editorRef = useRef(null);
+  const isSyncingScroll = useRef(false);
 
   // Load saved content and theme from localStorage on mount
   useEffect(() => {
@@ -69,6 +71,58 @@ function App() {
   const handleMarkdownChange = (value) => {
     setMarkdown(value);
   };
+
+  // Synchronized scrolling between editor and preview
+  useEffect(() => {
+    const editorElement = editorRef.current;
+    const previewElement = previewRef.current;
+
+    if (!editorElement || !previewElement) return;
+
+    const handleEditorScroll = () => {
+      if (isSyncingScroll.current) return;
+      
+      isSyncingScroll.current = true;
+      
+      const editorScrollPercentage = editorElement.scrollTop / 
+        (editorElement.scrollHeight - editorElement.clientHeight);
+      
+      const previewScrollTop = editorScrollPercentage * 
+        (previewElement.scrollHeight - previewElement.clientHeight);
+      
+      previewElement.scrollTop = previewScrollTop;
+      
+      setTimeout(() => {
+        isSyncingScroll.current = false;
+      }, 50);
+    };
+
+    const handlePreviewScroll = () => {
+      if (isSyncingScroll.current) return;
+      
+      isSyncingScroll.current = true;
+      
+      const previewScrollPercentage = previewElement.scrollTop / 
+        (previewElement.scrollHeight - previewElement.clientHeight);
+      
+      const editorScrollTop = previewScrollPercentage * 
+        (editorElement.scrollHeight - editorElement.clientHeight);
+      
+      editorElement.scrollTop = editorScrollTop;
+      
+      setTimeout(() => {
+        isSyncingScroll.current = false;
+      }, 50);
+    };
+
+    editorElement.addEventListener('scroll', handleEditorScroll);
+    previewElement.addEventListener('scroll', handlePreviewScroll);
+
+    return () => {
+      editorElement.removeEventListener('scroll', handleEditorScroll);
+      previewElement.removeEventListener('scroll', handlePreviewScroll);
+    };
+  }, []);
 
   // Handle PDF generation
   const handleGeneratePDF = async () => {
@@ -161,6 +215,7 @@ function App() {
             value={markdown}
             onChange={handleMarkdownChange}
             darkMode={darkMode}
+            editorRef={editorRef}
           />
         </div>
         

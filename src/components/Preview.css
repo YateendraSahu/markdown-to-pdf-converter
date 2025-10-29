@@ -16,6 +16,16 @@
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.preview-header::after {
+  content: '↕️ Scroll synced';
+  position: absolute;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
 }
 
 .preview-content {
@@ -23,6 +33,7 @@
   padding: 1.25rem;
   overflow-y: auto;
   background-color: var(--bg-primary);
+  scroll-behavior: auto;
 }
 
 /* Markdown Styling */
@@ -184,6 +195,10 @@
 @media (max-width: 1024px) {
   .preview-container {
     height: 400px;
+  }
+
+  .preview-header::after {
+    display: none;
   }
 }
 

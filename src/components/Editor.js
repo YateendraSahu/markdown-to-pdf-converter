@@ -6,7 +6,20 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import './Editor.css';
 import './EditorOverride.css';
 
-function Editor({ value, onChange, darkMode }) {
+function Editor({ value, onChange, darkMode, editorRef }) {
+  const containerRef = React.useRef(null);
+
+  // Attach ref to the scrollable editor element
+  React.useEffect(() => {
+    if (containerRef.current && editorRef) {
+      // Find the scrollable textarea within the MD editor
+      const scrollableElement = containerRef.current.querySelector('.w-md-editor-text');
+      if (scrollableElement && editorRef) {
+        editorRef.current = scrollableElement;
+      }
+    }
+  }, [editorRef]);
+
   return (
     <div className="editor-container">
       <div className="editor-header">
@@ -17,7 +30,11 @@ function Editor({ value, onChange, darkMode }) {
         </div>
       </div>
       
-      <div className="wysiwyg-editor-wrapper" data-color-mode={darkMode ? 'dark' : 'light'}>
+      <div 
+        ref={containerRef}
+        className="wysiwyg-editor-wrapper" 
+        data-color-mode={darkMode ? 'dark' : 'light'}
+      >
         <MDEditor
           value={value}
           onChange={(val) => onChange(val || '')}
